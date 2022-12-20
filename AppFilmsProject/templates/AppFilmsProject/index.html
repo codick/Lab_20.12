@@ -8,7 +8,7 @@
 </head>
 <body>
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}">Выйти из аккаунта</a>
+<a class="leave" href="{% url 'logout' %}">Выйти из аккаунта</a>
 {% else %}
 <a href="{% url 'signup' %}">Зарегистрироваться</a>
 <a href="{% url 'login' %}">Войти</a>
@@ -34,15 +34,15 @@
                 {% endfor %}
             </table>
          {% else %}
-         <h2>Список фильмов</h2>
-            <a href="add/">Добавить фильм</a>
+         <h2 class="">Список фильмов</h2>
+            <a href="add/" class="add">Добавить фильм</a>
             <table>
                 <thead><th>Название</th><th>Жанр</th><th>Дата выпуска</th><th>Актеры</th><th>Дата показа</th><th></th></thead>
                 {% for film in films %}
                 <tr>
                     <td>{{ film.name }}</td>
                     <td>{{ film.genre }}</td>
-                    <td>{{ film.issue_name }}</td>
+                    <td>{{ film.first_date }}</td>
                     <td>{{ film.actors }}</td>
                     <td>{{ film.show_date }}</td>
                 </tr>

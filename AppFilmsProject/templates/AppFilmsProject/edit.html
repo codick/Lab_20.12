@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block content %}
+        <h2>Изменение фильма</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label>Введите название фильма</label>
+                <input type="text" name="name" value="{{ film.name }}">
+            </p>
+            <p>
+                <label>Выберите жанр</label>
+                <select name="category">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}"
+                        {% if film.genre.id == category.id %}
+                        selected
+                        {% endif %}>
+                        {{ category.genre }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label>Введите дату выпуска</label>
+                <input type="date" name="first_date" value="{{ film.first_date }}">
+            </p>
+            <p>
+                <label>Введите актеров</label>
+                <input type="text" name="actors" value="{{ film.actors }}">
+            </p>
+            <p>
+                <label>Введите дату показа</label>
+                <input type="date" name="show_date" value="{{ film.show_date }}">
+            </p>
+            <input type="submit" value="Изменить">
+        </form>
+    {% endblock %}
+</body>
+</html>

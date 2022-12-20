@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <p>
+                {{ form.name }}
+            </p>
+            <p>
+                <select name="category">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.genre }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                {{ form.first_date }}
+            </p>
+            <p>
+                {{ form.actors }}
+            </p>
+            <p>
+                {{ form.show_date }}
+            </p>
+        </table>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
